@@ -1,0 +1,53 @@
+<ActionBar>
+    <Label class="action-bar-text" text="Word Search" textWrap="true"></Label>
+</ActionBar>
+<StackLayout>
+    <Label class="instructions" text="Tap the letters to make a word"></Label>
+    <StackLayout orientation="vertical" class="grid" width="375" height="375"
+        backgroundColor="white">
+        <StackLayout orientation="horizontal" class="row" width="400" height="37.5"
+            *ngFor="let row of this.grid">
+            <StackLayout class="column" width="37.5" height="37.5" *ngFor="let col of row">
+                <StackLayout *ngIf="col.clickNum % 2 === 0 ">
+                    <Button class="letter-unselected" text="{{ col.value }}"
+                        (tap)="letterClick(col)"></Button>
+                </StackLayout>
+                <StackLayout *ngIf="col.clickNum % 2 !== 0">
+                    <Button class="letter-selected" text="{{ col.value }}"
+                        (tap)="letterClick(col)"></Button>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </StackLayout>
+    <StackLayout class="validation">
+        <Label class="message" text="{{ this.validationMessage }}"></Label>
+        <FlexboxLayout flexDirection="row" justifyContent="space-between"
+            alignItems="center">
+            <StackLayout class="word-box" orientation="horizontal">
+                <Label class="word-box-hint" *ngIf="this.selectedLetters.length === 0"
+                    text="Selected letters appear here"></Label>
+                <Label class="selected-word" *ngFor="let letter of this.selectedLetters"
+                    text="{{ letter.value }}"></Label>
+            </StackLayout>
+            <Button class="validate-button-disabled" *ngIf="this.selectedLetters.length === 0"
+                text="Check" isEnabled="false"></Button>
+            <Button class="validate-button-enabled" *ngIf="this.selectedLetters.length > 0"
+                text="Check" (tap)="validateSelection()" #validateButton></Button>
+        </FlexboxLayout>
+    </StackLayout>
+    <FlexboxLayout class="words-summary" flexDirection="row" justifyContent="space-between"
+        alignItems="flex-start">
+        <StackLayout orientation="vertical" class="words-container">
+            <Label class="words-header" text="Words"></Label>
+            <StackLayout class="words" *ngFor="let word of this.words">
+                <Label class="word" text="{{ word }}"></Label>
+            </StackLayout>
+        </StackLayout>
+        <StackLayout orientation="vertical" class="words-container">
+            <Label class="words-header" text="Found: {{ this.foundWords.length }}"></Label>
+            <StackLayout class="words" *ngFor="let word of this.foundWords">
+                <Label class="word" text="{{ word }}"></Label>
+            </StackLayout>
+        </StackLayout>
+    </FlexboxLayout>
+</StackLayout>
