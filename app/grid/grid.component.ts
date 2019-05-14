@@ -5,13 +5,12 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { RouterExtensions } from "nativescript-angular/router";
 
 @Component({
-    selector: "Home",
+    selector: "Grid",
     moduleId: module.id,
-    templateUrl: "./home.component.html",
-    styleUrls: ["./home.component.css"]
+    templateUrl: "./grid.component.html",
+    styleUrls: ["./grid.component.css"]
 })
-export class HomeComponent implements OnInit {
-    private test: string = "Testing";
+export class GridComponent implements OnInit {
     private rows: number = 10;
     private cols: number = 10;
     private alphabet: string = "abcdefghijklmnopqrstuvwxyz";
@@ -30,14 +29,17 @@ export class HomeComponent implements OnInit {
 
     letterClick(col: LetterComponent) {
         this.validationMessage = "";
+
         if (typeof col != undefined) {
             col.clickNum++;
+
             if (col.clickNum % 2 != 0) { //odd numbers mean it has been selected
                 this.selectedLetters.push(col);
                 col.indexInSelection = this.selectedLetters.length - 1;
             } else if (col.clickNum > 0) { //it has been unselected
                 //find it in selectedLetters, confirm that it is the same letter, and remove it
                 let indexToRemove = col.indexInSelection;
+
                 if (this.selectedLetters[indexToRemove].value === col.value) {
                     this.selectedLetters.splice(indexToRemove, 1);
 
@@ -53,6 +55,7 @@ export class HomeComponent implements OnInit {
     validateSelection(): boolean {
         let selectedWord = ""
         let isValid = true;
+
         for (let letter of this.selectedLetters) {
             selectedWord = selectedWord.concat(letter.value);
 
@@ -67,7 +70,6 @@ export class HomeComponent implements OnInit {
                     isValid = false;
                 }
             }
-
         }
 
         if(!isValid) {
@@ -86,7 +88,6 @@ export class HomeComponent implements OnInit {
                 if (this.words.length === 0) {
                     this.validationMessage = "Congratulations! You found all the words!";
                 }
-
                 return true;
             }
         } 
@@ -99,6 +100,7 @@ export class HomeComponent implements OnInit {
 
         for (let i = 0; i < this.rows; i++) {
             let currentRow = [];
+
             for (let j = 0; j < this.cols; j++) {
                 let rand = this.getRandomInt(26);
                 let letter = this.alphabet[rand].toString().toUpperCase();
@@ -107,17 +109,16 @@ export class HomeComponent implements OnInit {
                 currentSpace.col = j;
                 currentRow.push(currentSpace);
             }
+
             newGrid.push(currentRow);
         }
 
         this.grid = newGrid;
-
         this.placeWords();
     }
 
     placeWords(): void {
-        //sort words by length first; longest words will be hardest to place so should be done first
-
+        
         for (let word of this.words) {
             let wordAsComponents = []
             for (let letter of word) {
@@ -148,6 +149,7 @@ export class HomeComponent implements OnInit {
                 let i = 0;
                 while (i < word.length) {
                     let currIndex = this.grid[rowIndex][colIndex];
+
                     if (typeof currIndex !== 'undefined' && currIndex.value !== word[i].value && currIndex.isInWord) {
                         //restart word, one row down
                         rowIndex = this.getRandomInt(this.rows);
@@ -163,6 +165,7 @@ export class HomeComponent implements OnInit {
                 }
                 break;
             }
+
             case 1: { //vertical
                 //need to limit rowIndex to make sure word fits
                 rowIndex = this.getRandomIndex(word);
@@ -172,6 +175,7 @@ export class HomeComponent implements OnInit {
                 let i = 0;
                 while (i < word.length) {
                     let currIndex = this.grid[rowIndex][colIndex];
+                    
                     if (typeof currIndex !== 'undefined' && currIndex.value !== word[i].value && currIndex.isInWord) {
                         //restart word, one col over
                         colIndex = this.getRandomInt(this.cols);
@@ -187,6 +191,7 @@ export class HomeComponent implements OnInit {
                 }
                 break;
             }
+
             case 2: { //diagonal
                 rowIndex = this.getRandomIndex(word);
                 colIndex = this.getRandomIndex(word);
@@ -194,6 +199,7 @@ export class HomeComponent implements OnInit {
                 let i = 0;
                 while (i < word.length) {
                     let currIndex = this.grid[rowIndex][colIndex];
+                    
                     if (typeof currIndex !== 'undefined' && currIndex.value !== word[i].value && currIndex.isInWord) {
                         //restart word, one col over and one row down
                         colIndex = this.getRandomIndex(word);
@@ -210,6 +216,7 @@ export class HomeComponent implements OnInit {
                 }
                 break;
             }
+
             default: {
                 break;
             }

@@ -9,8 +9,8 @@ import { NativeScriptUIAutoCompleteTextViewModule } from "nativescript-ui-autoco
 import { NativeScriptUIGaugeModule } from "nativescript-ui-gauge/angular";
 import { NativeScriptFormsModule } from "nativescript-angular/forms";
 
-import { HomeRoutingModule } from "./home-routing.module";
-import { HomeComponent } from "./home.component";
+import { GridRoutingModule } from "./grid-routing.module";
+import { GridComponent } from "./grid.component";
 import { LetterModule } from "./letter.module";
 
 @NgModule({
@@ -23,17 +23,17 @@ import { LetterModule } from "./letter.module";
         NativeScriptUIAutoCompleteTextViewModule,
         NativeScriptUIGaugeModule,
         NativeScriptCommonModule,
-        HomeRoutingModule,
+        GridRoutingModule,
         NativeScriptFormsModule,
         LetterModule
     ],
     declarations: [
-        HomeComponent
+        GridComponent
     ],
     schemas: [
         NO_ERRORS_SCHEMA
     ]
 })
-export class HomeModule { 
+export class GridModule { 
     
 }
