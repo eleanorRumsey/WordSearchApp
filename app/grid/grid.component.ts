@@ -15,6 +15,9 @@ export class GridComponent implements OnInit {
     private cols: number = 10;
     private alphabet: string = "abcdefghijklmnopqrstuvwxyz";
     private words = ["OBJECTIVEC", "VARIABLE", "KOTLIN", "MOBILE", "SWIFT", "JAVA"];
+    private wordFound = "Word found!";
+    private wordInvalid = "Not quite! Try again.";
+    private allWordsFound = "Congratulations! You found all the words!";
     private selectedLetters: LetterComponent[] = [];
     private foundWords = [];
     private grid: LetterComponent[][] = [[]];
@@ -66,7 +69,7 @@ export class GridComponent implements OnInit {
                 let colDiff = this.selectedLetters[i].col - this.selectedLetters[i - 1].col;
                 let rowDiff = this.selectedLetters[i].row - this.selectedLetters[i - 1].row;
                 if (colDiff > 1 || colDiff < 0 || rowDiff > 1 || rowDiff < 0) {
-                    this.validationMessage = "Not quite! Try again.";
+                    this.validationMessage = this.wordInvalid;
                     isValid = false;
                 }
             }
@@ -83,10 +86,10 @@ export class GridComponent implements OnInit {
         if (isValid) {
             if (typeof this.words.indexOf(selectedWord) !== undefined && this.words.indexOf(selectedWord) > -1) {
                 this.foundWords.push(this.words.splice(this.words.indexOf(selectedWord), 1));
-                this.validationMessage = "Word found!";
+                this.validationMessage = this.wordFound;
 
                 if (this.words.length === 0) {
-                    this.validationMessage = "Congratulations! You found all the words!";
+                    this.validationMessage = this.allWordsFound;
                 }
                 return true;
             }
