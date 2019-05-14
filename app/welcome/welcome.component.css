@@ -21,6 +21,8 @@
 }
 
 .new-game {
-    width: 600px;
-    
+    width: 500px;
+    background-color: white;
+    color: #a1beed;
+    margin-top: 10px;
 }

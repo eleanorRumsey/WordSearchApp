@@ -2,11 +2,6 @@
     font-size: 18;
 }
 
-@font-face {
-    font-family: 'parkwayLush';
-    src: url(../parkway_lush/parkwayLush.ttf);
-}
-
 /*
 In many cases you may want to use the NativeScript core theme instead
 of writing your own CSS rules. For a full list of class names in the theme

@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Page } from "ui/page";
 import { ActivatedRoute, Router } from "@angular/router";
+import { RouterExtensions } from "nativescript-angular/router";
 
 
 @Component({
@@ -11,7 +12,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 })
 export class WelcomeComponent implements OnInit{ 
 
-    constructor(private page: Page, private router: Router, private currentRoute: ActivatedRoute) {
+    constructor(private page: Page, private router: RouterExtensions, private currentRoute: ActivatedRoute) {
         page.actionBarHidden = true;
 	}
 
@@ -20,6 +21,14 @@ export class WelcomeComponent implements OnInit{
     }
     
     startGame(): void {
-        this.router.navigate(["home"], {relativeTo: this.currentRoute});
+        this.router.navigate(["home"], {
+            relativeTo: this.currentRoute, 
+            animated: true, 
+            transition: { 
+                name: "slideLeft",
+                duration: 300,
+                curve: "easeIn"
+            }
+        });
     }
 }

@@ -50,5 +50,5 @@
             </StackLayout>
         </StackLayout>
     </FlexboxLayout>
-    <Button class="home" text="Return to home" (tap)="returnHome()"></Button>
+    <Button class="home" *ngIf="this.words.length === 0" text="Return to home" (tap)="returnHome()"></Button>
 </StackLayout>

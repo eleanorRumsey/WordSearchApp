@@ -30,7 +30,6 @@ export class HomeComponent implements OnInit {
 
     letterClick(col: LetterComponent) {
         this.validationMessage = "";
-        
         if (typeof col != undefined) {
             col.clickNum++;
             if (col.clickNum % 2 != 0) { //odd numbers mean it has been selected
