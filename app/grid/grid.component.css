@@ -19,11 +19,6 @@ ActionBar {
     margin-top: 20px;
 }
 
-.letter-selected .letter-unselected {
-    text-align: center;
-    font-size: 20px;
-}
-
 .letter-unselected {
     color: #a1beed;
     background-color: white;
