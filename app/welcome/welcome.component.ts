@@ -16,12 +16,10 @@ export class WelcomeComponent implements OnInit{
         page.actionBarHidden = true;
 	}
 
-	ngOnInit(): void {
-
-    }
+	ngOnInit(): void {}
     
     startGame(): void {
-        this.router.navigate(["home"], {
+        this.router.navigate(["grid"], {
             relativeTo: this.currentRoute, 
             animated: true, 
             transition: { 

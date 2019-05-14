@@ -11,8 +11,8 @@ import { NativeScriptFormsModule } from "nativescript-angular/forms";
 
 import { WelcomeRoutingModule } from "./welcome-routing.module";
 import { WelcomeComponent } from "./welcome.component";
-import { HomeComponent } from "~/home/home.component";
-import { HomeRoutingModule } from "~/home/home-routing.module";
+import { GridComponent } from "~/grid/grid.component";
+import { GridRoutingModule } from "~/grid/grid-routing.module";
 
 @NgModule({
     imports: [
@@ -25,12 +25,12 @@ import { HomeRoutingModule } from "~/home/home-routing.module";
         NativeScriptUIGaugeModule,
         NativeScriptCommonModule,
         WelcomeRoutingModule,
-        HomeRoutingModule,
+        GridRoutingModule,
         NativeScriptFormsModule
     ],
     declarations: [
         WelcomeComponent,
-        HomeComponent
+        GridComponent
     ],
     schemas: [
         NO_ERRORS_SCHEMA
