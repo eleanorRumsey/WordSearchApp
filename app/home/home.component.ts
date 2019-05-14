@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { LetterComponent } from "./letter.component";
 import { Page, EventData } from "tns-core-modules/ui/page/page";
+import { ActivatedRoute, Router } from "@angular/router";
+import { RouterExtensions } from "nativescript-angular/router";
 
 @Component({
     selector: "Home",
@@ -19,7 +21,7 @@ export class HomeComponent implements OnInit {
     private grid: LetterComponent[][] = [[]];
     private validationMessage = "";
 
-    constructor() { }
+    constructor(private router: RouterExtensions) { }
 
     ngOnInit(): void {
         this.selectedLetters = [];
@@ -54,7 +56,6 @@ export class HomeComponent implements OnInit {
         let isValid = true;
         for (let letter of this.selectedLetters) {
             selectedWord = selectedWord.concat(letter.value);
-            this.grid[letter.row][letter.col].clickNum = 0;
 
             //check that letters appear all in straight row, column, or diagonal
             //row and col differences should always either be 1 or 0
@@ -66,6 +67,13 @@ export class HomeComponent implements OnInit {
                     this.validationMessage = "Not quite! Try again.";
                     isValid = false;
                 }
+            }
+
+        }
+
+        if(!isValid) {
+            for (let letter of this.selectedLetters){
+                this.grid[letter.row][letter.col].clickNum = 0;
             }
         }
 
@@ -82,7 +90,7 @@ export class HomeComponent implements OnInit {
 
                 return true;
             }
-        }
+        } 
         return false;
     }
 
@@ -219,5 +227,9 @@ export class HomeComponent implements OnInit {
 
     getRandomInt(max: number): number {
         return Math.floor(Math.random() * Math.floor(max));
+    }
+
+    returnHome(): void {
+        this.router.back();
     }
 }

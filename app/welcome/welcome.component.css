@@ -1,0 +1,26 @@
+.main {
+    align-content: center;
+}
+
+.welcome-message {
+    color: white;
+    text-align: center;
+}
+
+.shopify {
+    font-size: 20px;
+}
+
+.word-search {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 40px;
+}
+
+.start-game {
+    margin-top: 200px;
+}
+
+.new-game {
+    width: 600px;
+    
+}

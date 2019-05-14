@@ -102,3 +102,10 @@ ActionBar {
 .word {
     margin-bottom: 10px;
 }
+
+.home {
+    color: white;
+    background-color: #a1beed;
+    width: 85%;
+    margin-top: 10px;
+}
